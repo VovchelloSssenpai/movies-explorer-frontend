@@ -1,0 +1,7 @@
+
+
+@media screen and (max-width: 841px){
+    .navigation__movieLink-active{
+        border-bottom: 1px solid white;
+    }
+}

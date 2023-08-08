@@ -1,0 +1,14 @@
+.checkbox__text{
+    display: inline-block;
+    margin: 0;
+    font-size: 14px;
+    line-height: 18px;
+    vertical-align: super;
+    margin-left: 11px;
+}
+
+@media screen and (max-width: 560px) {
+    .checkbox__text{
+        font-size: 11px;
+    }
+}

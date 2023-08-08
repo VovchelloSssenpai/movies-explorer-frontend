@@ -1,0 +1,16 @@
+.main{
+    background-color: rgba(32, 32, 32, 1);
+    padding: 0 0 0 0;
+}
+/* 
+@media screen and (max-width: 768px) {
+    .main {
+        padding: 0 0 121px 0;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .main {
+        padding: 0 0 104px 0;
+    }
+}  */

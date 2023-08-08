@@ -1,0 +1,10 @@
+.navigation__wrapper{
+    display: flex;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 841px){
+    .navigation__wrapper {
+flex-direction: column;
+    }}

@@ -1,0 +1,20 @@
+.accountForm__buttonWrapper{
+    display: flex;
+    flex-direction: column;
+    margin-top: 204px;
+    max-width: 410px;
+    width: 100%;
+}
+
+
+@media screen and (max-width: 768px) {
+    .accountForm__buttonWrapper{
+        margin-top: 194px;
+    }
+}  
+
+@media screen and (max-width: 560px) {
+    .accountForm__buttonWrapper{
+        margin-top: 362px;
+    }
+}

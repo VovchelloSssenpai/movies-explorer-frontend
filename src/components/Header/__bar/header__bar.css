@@ -1,0 +1,23 @@
+.header__bar{
+ display: block;
+ width: 28px;
+ height: 3px; 
+ margin: 5px auto;  
+ background-color: white;
+ -webkit-transition: all 0.3s ease-in-out;
+ transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 841px){
+    .header__hamburger.header__hamburger-active  .header__bar:nth-child(2) {
+        opacity: 0;
+    }
+    .header__hamburger.header__hamburger-active  .header__bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .header__hamburger.header__hamburger-active  .header__bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+}

@@ -1,0 +1,23 @@
+.aboutMe__bio{
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 22px;
+    max-width: 68%;
+}
+
+
+@media screen and (max-width: 768px) {
+    .aboutMe__bio {
+        font-size: 12px;
+        line-height: 18px;
+        max-width: 87%;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .aboutMe__bio {
+        font-size: 11px;
+        line-height: 16px;
+        max-width: 98%;
+    }
+} 

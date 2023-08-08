@@ -1,0 +1,9 @@
+.anchor-hover{
+    text-decoration: none;
+}
+
+.anchor-hover:hover{
+    cursor: pointer;
+    opacity: .7;
+    transition: opacity .7s;
+}

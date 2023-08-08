@@ -1,0 +1,11 @@
+.movieCard__info{
+    display: flex;
+    width: 91%;
+    margin-top: 18px;
+}
+
+@media screen and (max-width: 560px) {
+    .movieCard__info{
+        margin-top: 14px;
+    }
+}

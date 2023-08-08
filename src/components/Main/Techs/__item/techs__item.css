@@ -1,0 +1,16 @@
+.techs__item{
+    background-color: rgba(48, 48, 48, 1);
+    border-radius: 10px;
+    padding: 20px 22px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: -2px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .techs__item {
+        font-size: 12px;
+    }
+} 

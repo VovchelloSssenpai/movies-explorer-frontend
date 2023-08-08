@@ -1,0 +1,13 @@
+.navigation__movieLink{
+    color: white;
+    font-size: 14px;
+    line-height: 18px;
+    text-decoration: none;
+    margin-right: 18px;
+}
+
+@media screen and (max-width: 841px){
+    .navigation__movieLink{
+       margin: 16px 0;
+    }
+}

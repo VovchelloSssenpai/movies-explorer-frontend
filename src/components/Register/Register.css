@@ -1,0 +1,22 @@
+.register{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(32, 32, 32, 1);
+    padding: 70px 0 68px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .register{
+      padding-top: 232px;
+      padding-bottom: 231px;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .register{
+        padding-top: 56px;
+        padding-bottom: 31px;
+      }
+}

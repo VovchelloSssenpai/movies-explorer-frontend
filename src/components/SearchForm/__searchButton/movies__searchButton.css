@@ -1,0 +1,10 @@
+.movies__searchButton{
+    background-color: rgba(66, 133, 244, 1);
+    border-radius: 48px;
+    border: none;
+    color: white;
+    font-size: 11px;
+    line-height: 18px;
+    width: 60px;
+    height: 34px;
+}

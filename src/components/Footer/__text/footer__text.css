@@ -1,0 +1,14 @@
+.footer__text{
+    margin: 0;
+    text-align: center;
+    color: rgba(139, 139, 139, 1);
+    font-size: 13px;
+    border-bottom: 1px solid rgba(66, 66, 66, 1);
+    padding-bottom: 23px;
+}
+
+@media screen and (max-width: 560px) {
+    .footer__text {
+        font-size: 12px;
+    }
+} 

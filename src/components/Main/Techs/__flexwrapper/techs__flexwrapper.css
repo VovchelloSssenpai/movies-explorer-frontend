@@ -1,0 +1,19 @@
+.techs__flexwrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 90px 0 102px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .techs__flexwrapper {
+        margin: 81px 0 83px 0;
+    }
+} 
+
+
+@media screen and (max-width: 560px) {
+    .techs__flexwrapper {
+        margin: 62px 0 31px 0;
+    }
+} 

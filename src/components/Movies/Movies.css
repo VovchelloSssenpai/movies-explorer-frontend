@@ -1,0 +1,21 @@
+.movies{
+    background-color: rgba(32, 32, 32, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* margin-bottom: 160px; */
+}
+
+@media screen and (max-width: 841px) {
+    .movies {
+        width: 100%;
+        padding-bottom: 35px;
+    }
+} 
+
+/* @media screen and (max-width: 560px) {
+    .aboutMe {
+        padding: 60px 0 0 0;
+    }
+}  */

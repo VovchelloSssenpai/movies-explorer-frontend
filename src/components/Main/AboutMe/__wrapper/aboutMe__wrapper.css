@@ -1,0 +1,16 @@
+.aboutMe__wrapper{    
+    margin: 0 auto;
+    width: 89.3%;
+}
+
+@media screen and (max-width: 768px) {
+    .aboutMe__wrapper {
+        width: 87%;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .aboutMe__wrapper {
+        width: 91%;
+    }
+} 

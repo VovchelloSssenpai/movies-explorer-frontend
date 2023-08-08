@@ -1,0 +1,16 @@
+.accountForm__wrapper{
+   display: flex;
+   max-width: 410px;
+   width: 100%;
+   padding: 18px 0 14px 0;
+}
+
+.accountForm__wrapper:first-child {
+    border-bottom: 1px solid rgba(66, 66, 66, 1);
+}
+
+@media screen and (max-width: 560px) {
+    .accountForm__wrapper{
+        max-width: 260px;
+     }
+}

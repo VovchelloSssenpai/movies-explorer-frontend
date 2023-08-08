@@ -1,0 +1,10 @@
+.techs__wrapper{
+    margin: 0 auto;
+    width: 89%;
+}
+
+@media screen and (max-width: 768px) {
+    .techs__wrapper {
+        width: 87%;
+    }
+} 
