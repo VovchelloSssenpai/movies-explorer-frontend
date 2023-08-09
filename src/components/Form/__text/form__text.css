@@ -1,0 +1,14 @@
+.form__text{
+    color: rgba(139, 139, 139, 1);
+    font-weight: 300;
+    font-size: 14px;
+    text-align: center;
+    margin: 18px 0 0 0;
+}
+
+
+@media screen and (max-width: 560px) {
+    .form__text{
+        font-size: 12px;
+    }
+}

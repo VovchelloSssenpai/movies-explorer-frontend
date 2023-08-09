@@ -1,0 +1,17 @@
+.table__header-small{
+    background-color: rgba(61, 220, 132, 1);
+    color: black;
+    width: 20%;
+}
+
+
+@media screen and (max-width: 768px) {
+    .table__header-small {
+       width: 21%;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .table__header-small {
+        width: 35%;
+    }}

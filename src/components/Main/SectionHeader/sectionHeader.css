@@ -1,0 +1,16 @@
+.sectionHeader{
+    border-bottom: 1px solid white;
+    padding-bottom: 23px;
+    margin: 0;
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: -1px;
+}
+
+
+@media screen and (max-width: 560px) {
+    .sectionHeader {
+        font-size: 18px;
+        padding-bottom: 28px;
+    }
+} 

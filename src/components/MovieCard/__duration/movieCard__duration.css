@@ -1,0 +1,13 @@
+.movieCard__duration{
+    font-size: 13px;
+    line-height: 18px;
+    color: rgba(139, 139, 139, 1);
+    margin: 0px 0 18px auto;
+}
+
+@media screen and (max-width: 560px) {
+    .movieCard__duration{
+        font-size: 10px;
+        margin: 0px 0 10px auto;
+    }
+}

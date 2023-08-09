@@ -1,0 +1,10 @@
+.footer__marginwrapper{
+    margin: 0 auto;
+    width: 89%;
+}
+
+@media screen and (max-width: 768px) {
+    .footer__marginwrapper {
+        width: 92%;
+    }
+} 

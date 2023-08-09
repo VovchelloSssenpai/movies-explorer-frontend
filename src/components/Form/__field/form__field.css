@@ -1,0 +1,7 @@
+.form__field{
+    display: flex;
+    flex-direction: column;
+    font-weight: 300;
+    font-size: 10px;
+    color: rgba(139, 139, 139, 1);
+}

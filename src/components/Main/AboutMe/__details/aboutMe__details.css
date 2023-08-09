@@ -1,0 +1,11 @@
+@media screen and (max-width: 560px) {
+    .aboutMe__details {
+        order: 2;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .aboutMe__details {
+        margin-top: 37px;
+    }
+} 

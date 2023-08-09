@@ -1,0 +1,18 @@
+.techs{
+    width: 100%;
+    padding-top: 101px;
+    padding-bottom: 101px;
+    background-color: rgba(39, 39, 39, 1);
+}
+
+@media screen and (max-width: 768px) {
+    .techs {
+        padding: 92px 0 93px 0;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .techs {
+        padding: 50px 0 93px 0;
+    }
+} 

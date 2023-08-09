@@ -1,0 +1,12 @@
+.table__header{
+    font-weight: 300;
+    font-size: 14px;
+    background-color: rgba(39, 39, 39, 1);
+    padding: 10px 0;
+}
+
+
+@media screen and (max-width: 560px) {
+    .table__header {
+        font-size: 11px;
+    }}

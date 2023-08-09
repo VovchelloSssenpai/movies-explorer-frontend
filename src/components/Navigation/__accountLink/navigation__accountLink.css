@@ -1,0 +1,16 @@
+.navigation__accountLink{
+    color: white;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration: none;
+    background-color: rgba(49, 49, 49, 1);
+    border-radius: 20px;
+    padding: 7px 22px;
+    margin-left: 33px;
+}
+
+@media screen and (max-width: 841px){
+    .navigation__accountLink{
+       margin: 300px 0 0 0;
+    }
+}

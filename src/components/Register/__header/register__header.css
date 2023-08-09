@@ -1,0 +1,18 @@
+.register__header{
+    font-weight: 400;
+    font-size: 24px;
+    margin: 37px 0 41px 0;
+}
+
+
+@media screen and (max-width: 768px) {
+    .register__header{
+        margin: 36px 0 42px 0;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .register__header{
+        margin: 46px 0 83px 0;
+    }
+}

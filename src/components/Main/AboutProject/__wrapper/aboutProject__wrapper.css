@@ -1,0 +1,9 @@
+.aboutProject__wrapper{
+    max-width: 550px;
+}
+
+@media screen and (max-width: 560px) {
+    .aboutProject__wrapper {
+        margin: 21px 0 0 0;
+    }
+} 

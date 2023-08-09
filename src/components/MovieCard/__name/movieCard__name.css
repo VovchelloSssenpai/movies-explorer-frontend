@@ -1,0 +1,12 @@
+.movieCard__name{
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: normal;
+    margin: 0;
+}
+
+@media screen and (max-width: 560px) {
+    .movieCard__name{
+        font-size: 12px;
+    }
+}

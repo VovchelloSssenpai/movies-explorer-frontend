@@ -1,0 +1,16 @@
+.techs__text{
+    font-weight: 300;
+    font-size: 14px;
+    margin: 0;
+    line-height: 20px;
+    max-width: 460px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+    .techs__text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+} 

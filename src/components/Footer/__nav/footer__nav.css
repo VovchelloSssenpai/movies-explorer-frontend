@@ -1,0 +1,5 @@
+@media screen and (max-width: 560px) {
+    .footer__nav {
+    order: 1;
+    }
+} 

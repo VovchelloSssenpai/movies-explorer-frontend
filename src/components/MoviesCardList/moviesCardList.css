@@ -1,0 +1,9 @@
+.moviesCardList{
+    width: 89%;
+}
+
+@media screen and (max-width: 841px) {
+    .moviesCardList {
+        width: 100%;
+    }
+} 

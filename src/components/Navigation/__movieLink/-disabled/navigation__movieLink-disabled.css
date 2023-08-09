@@ -1,0 +1,10 @@
+.navigation__movieLink-disabled{
+    display: none;
+}
+
+@media screen and (max-width: 841px){
+    .navigation__movieLink-disabled{
+        display: block;
+    }
+    
+}

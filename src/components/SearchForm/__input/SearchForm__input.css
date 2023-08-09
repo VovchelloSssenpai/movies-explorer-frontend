@@ -1,0 +1,14 @@
+.SearchForm__input{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+}
+
+ @media screen and (max-width: 560px) {
+    .SearchForm__input {
+        text-align: start;
+        font-size: 18px;
+    }
+}  

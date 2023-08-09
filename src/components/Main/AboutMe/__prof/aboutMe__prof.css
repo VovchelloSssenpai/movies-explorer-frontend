@@ -1,0 +1,21 @@
+.aboutMe__prof{
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0 0 24px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .aboutMe__prof {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 0 20px 0;
+    }
+} 
+
+
+@media screen and (max-width: 560px) {
+    .aboutMe__prof {
+        font-size: 11px;
+    }
+} 

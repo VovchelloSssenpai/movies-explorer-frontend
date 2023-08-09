@@ -1,0 +1,20 @@
+.account{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(32, 32, 32, 1);
+    padding-bottom: 53px;
+}
+
+@media screen and (max-width: 768px) {
+    .account{
+        padding-bottom: 253px;
+    }
+}  
+
+@media screen and (max-width: 560px) {
+    .account{
+        padding-bottom: 24px;
+    }
+}

@@ -1,0 +1,8 @@
+.accountForm__button{
+    border: none;
+    background-color: rgba(32, 32,  32, 1);
+    color: white;
+    font-weight: 300;
+    font-size: 13px;
+    margin-bottom: 15px;
+}

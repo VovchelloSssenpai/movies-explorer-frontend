@@ -1,0 +1,6 @@
+.checkbox__switch{
+    display: inline-block;
+    position: relative;
+    width: 36px;
+    height: 20px;
+}

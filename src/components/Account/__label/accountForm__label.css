@@ -1,0 +1,10 @@
+.accountForm__label{
+    font-size: 11px;
+    width: 10%;
+}
+
+@media screen and (max-width: 560px) {
+    .accountForm__label{
+        width: 16%;
+    }
+}

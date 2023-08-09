@@ -1,0 +1,13 @@
+.SearchForm__searchImage{
+    border: 1px solid rgba(66, 66, 66, 1);
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    padding: 10px;
+}
+
+@media screen and (max-width: 560px) {
+    .SearchForm__searchImage{
+        display: none;
+    }
+} 

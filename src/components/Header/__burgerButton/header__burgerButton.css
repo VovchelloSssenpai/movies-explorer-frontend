@@ -1,0 +1,9 @@
+.header__burgerButton{
+    display: none;
+    margin-left: auto;
+}
+
+@media screen and (max-width: 841px){
+.header__burgerButton {
+    display:inline-block;
+}}

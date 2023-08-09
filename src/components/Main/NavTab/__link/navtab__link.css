@@ -1,0 +1,16 @@
+.navtab__link {
+    color: white;
+    text-decoration: none;
+    background-color: rgba(48, 48, 48, 1);
+    border-radius: 10px;
+    padding: 11px 19px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 560px) {
+    .navtab__link {
+        padding: 9px 11px;
+        font-size: 10px;
+    }
+} 

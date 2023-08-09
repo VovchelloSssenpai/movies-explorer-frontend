@@ -1,0 +1,13 @@
+.table__text{
+    text-align: center;
+    font-weight: 300;
+    font-size: 14px;
+    color: rgba(139, 139, 139, 1);
+    padding: 13px 0 13px 0;
+}
+
+@media screen and (max-width: 560px) {
+    .table__text {
+        font-size: 11px;
+        padding: 13px 0 13px 0;
+    }}

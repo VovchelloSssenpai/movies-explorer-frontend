@@ -1,0 +1,18 @@
+.portfolio__item{
+    border-bottom: rgba(66, 66, 66, 1) 1px solid;
+    padding-bottom: 26px;
+    margin-bottom: 29px;
+}
+
+@media screen and (max-width: 768px) {
+    .portfolio__item {
+        border-bottom: rgba(230, 230, 230, 1) 1px solid;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .portfolio__item {
+        padding-bottom:22px;
+        margin-bottom: 25px;
+    }
+} 

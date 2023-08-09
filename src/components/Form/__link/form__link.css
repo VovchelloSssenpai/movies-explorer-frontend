@@ -1,0 +1,12 @@
+.form__link{
+    color: rgba(66, 133, 244, 1);
+    font-size: 14px;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 560px) {
+    .form__link{
+        font-size: 12px;
+    }
+}
