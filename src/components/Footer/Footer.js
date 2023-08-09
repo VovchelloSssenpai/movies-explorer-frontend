@@ -8,8 +8,8 @@ function Footer() {
             <p className="footer__year">© {currentYear}</p>
             <nav className="footer__nav">
                 <ul className="footer__list">
-                    <li><a href="https://practicum.yandex.ru/" className="footer__link anchor-hover">Яндекс.Практикум</a></li>
-                    <li><a href="https://github.com/VovchelloSssenpai?tab=repositories" className="footer__link anchor-hover">Github</a></li>
+                    <li><a href="https://practicum.yandex.ru/" target="_blank" rel="noreferrer" className="footer__link anchor-hover">Яндекс.Практикум</a></li>
+                    <li><a href="https://github.com/VovchelloSssenpai?tab=repositories" target="_blank" rel="noreferrer" className="footer__link anchor-hover">Github</a></li>
                 </ul>
             </nav>
          </div>

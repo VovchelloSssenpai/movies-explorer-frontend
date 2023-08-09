@@ -1,7 +1,22 @@
 .notFound{
     display: flex;
     flex-direction: column;
-    height: 100%;
+    /* height: 100%; */
     align-items: center;
     justify-content: center;
+    width: 100%;
+    background-color: rgba(32, 32, 32, 1);
 }
+
+
+@media screen and (max-width: 768px) {
+    .notFound{
+        padding-bottom: 220px;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .notFound{
+        padding-bottom: 30px;
+    }
+} 

@@ -1,4 +1,4 @@
-.navigation__button{
+.navigation-landing__button{
     color: white;
     border: none;
     background-color: transparent;
@@ -11,7 +11,7 @@
 
 
 @media screen and (max-width: 560px) {
-    .navigation__button{
+    .navigation-landing__button{
         font-size: 10px;
         margin-right: 14px;
     }

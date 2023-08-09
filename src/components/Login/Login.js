@@ -41,6 +41,7 @@ const handleSubmit = (e) => {
                         type="email" 
                         required
                         name='email'
+                        placeholder='Введите имейл'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         onInput={handleInvalid}
@@ -54,6 +55,7 @@ const handleSubmit = (e) => {
                         type="password" 
                         required
                         name='password'
+                        placeholder='Введите пароль'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         onInput={handleInvalid}

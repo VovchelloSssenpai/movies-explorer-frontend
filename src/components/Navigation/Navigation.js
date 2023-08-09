@@ -7,9 +7,9 @@ function Navigation({ isActive }) {
   function handleNavigation(){
     if (location.pathname === "/signin") {return }
     else if(location.pathname === "/signup"){return }
-    else if(location.pathname === "/"){return (<nav className={`navigation-landing`}><div className='navigation__wrapper-landing'>
-                                                  <a href='/signup' className='navigation__button anchor-hover' >Регистрация</a>
-                                                  <a href='/signin' className='navigation__button-colored anchor-hover' >Войти</a>
+    else if(location.pathname === "/"){return (<nav className={`navigation-landing`}><div className='navigation-landing__wrapper'>
+                                                  <a href='/signup' className='navigation-landing__button anchor-hover' >Регистрация</a>
+                                                  <a href='/signin' className='navigation-landing__button-colored anchor-hover' >Войти</a>
                                               </div></nav>)}
     else if(location.pathname === "/movies" || location.pathname === "/saved-movies" || location.pathname === "/profile") {
       return  (<nav className={`navigation ${isActive ? `navigation_active` : ``}`}><div className='navigation__wrapper'>

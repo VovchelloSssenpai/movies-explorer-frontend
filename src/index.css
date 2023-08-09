@@ -16,12 +16,12 @@
 @import url(./components/Navigation/_active/Navigation_active.css);
 @import url(./components/Navigation/__wrapper/navigation__wrapper.css);
 @import url(./components/Navigation/__movieWrapper/navigation__movieWrapper.css);
-@import url(./components/Navigation/__button/navigation__button.css);
+@import url(./components/Navigation/__button/navigation-landing__button.css);
 @import url(./components/Navigation/__movieLink/navigation__movieLink.css);
 @import url(./components/Navigation/__accountLink/navigation__accountLink.css);
-@import url(./components/Navigation/__button/-colored/navigation__button-colored.css);
+@import url(./components/Navigation/__button/-colored/navigation-landing__button-colored.css);
 @import url(./components/Navigation/active/active.css);
-@import url(./components/Navigation/__wrapper/-landing/navigation__wrapper-landing.css);
+@import url(./components/Navigation/__wrapper/navigation-landing__wrapper.css);
 @import url(./components/Navigation/__movieLink/-disabled/navigation__movieLink-disabled.css);
 @import url(./components/Navigation/__movieLink/-active/navigation__movieLink-active.css);
 /* Main */
@@ -77,6 +77,7 @@
 @import url(./components/SearchForm/__searchButton/movies__searchButton.css);
 @import url(./components/SearchForm/SearchForm.css);
 @import url(./components/SearchForm/__input/SearchForm__input.css);
+@import url(./components/SearchForm/-error/SearchForm-error.css);
 /* MovieCard */
 @import url(./components/MovieCard/MovieCard.css);
 @import url(./components/MovieCard/__info/movieCard__info.css);
@@ -138,3 +139,4 @@
 @import url(./components/NotFound/__header/notFound__header.css);
 @import url(./components/NotFound/__text/notFound__text.css);
 @import url(./components/Login/Login.css);
+@import url(./components/NotFound/__link/notFound__link.css);

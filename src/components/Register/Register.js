@@ -43,7 +43,8 @@ const handleSubmit = (e) => {
           <div className="form__wrap">
                 <label className="form__field">Имя
                 <input className={`form__input ${nameError ? 'form__input-error' : ''}`} 
-                        required 
+                        required
+                        placeholder='Введите текст' 
                         name='username'
                         minLength={2} 
                         maxLength={30} 
@@ -58,6 +59,7 @@ const handleSubmit = (e) => {
                 <input className={`form__input ${emailError ? 'form__input-error' : ''}`}
                         type="email" 
                         required
+                        placeholder='Введите имейл'
                         name='email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -70,6 +72,7 @@ const handleSubmit = (e) => {
                 <label className="form__field">Пароль
                 <input className={`form__input ${passwordError ? 'form__input-error' : ''}`} 
                         type="password" 
+                        placeholder='Введите пароль'
                         required
                         name='password'
                         value={password}

@@ -1,5 +1,18 @@
 .notFound__header{
     font-weight: 300;
     font-size: 140px;
-    margin: 0;
+    margin: 249px 0 10px 0;
 }
+
+@media screen and (max-width: 768px) {
+    .notFound__header{
+        margin: 412px 0 10px 0;
+    }
+} 
+
+@media screen and (max-width: 560px) {
+    .notFound__header{
+        font-size: 80px;
+        margin: 333px 0 10px 0;
+    }
+} 

@@ -1,0 +1,14 @@
+.notFound__link{
+    color: rgba(66, 133, 244, 1);
+    font-size: 14px;
+    font-weight: 300;
+    text-decoration: none;
+    background-color: transparent;
+    border:  none;
+}
+
+@media screen and (max-width: 560px) {
+    .notFound__link{
+        font-size: 12px;
+    }
+} 

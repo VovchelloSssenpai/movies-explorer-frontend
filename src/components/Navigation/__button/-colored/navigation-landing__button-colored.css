@@ -1,4 +1,4 @@
-.navigation__button-colored{
+.navigation-landing__button-colored{
     border: none; 
     border-radius: 3px;
     background-color: rgba(61, 220, 132, 1);
@@ -11,7 +11,7 @@
 
 
 @media screen and (max-width: 560px) {
-    .navigation__button-colored{
+    .navigation-landing__button-colored{
         font-size: 10px;
         padding: 6px 13px;
     }
