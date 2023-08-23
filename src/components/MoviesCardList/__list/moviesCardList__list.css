@@ -14,9 +14,9 @@
         grid-template-columns: repeat(auto-fit,minmax(342px,342px));
         gap:  35px 24px;
     }
-    .moviesCardList__list:not(.own) .movieCard:nth-last-child(-n+4) {
+    /* .moviesCardList__list:not(.own) .movieCard:nth-last-child(-n+4) {
         display: none;
-    }
+    } */
 } 
 
 @media screen and (max-width: 560px) {
@@ -25,10 +25,10 @@
         grid-template-columns: repeat(auto-fit,minmax(300px,00px));
         gap:  15px 24px;
     }
-    .moviesCardList__list:not(.own) .movieCard:nth-last-child(-n+7) {
+    /* .moviesCardList__list:not(.own) .movieCard:nth-last-child(-n+7) {
         display: none;
     }
     .moviesCardList__list.own .movieCard:nth-last-child(-n+1) {
         display: none;
-    }
+    } */
 } 

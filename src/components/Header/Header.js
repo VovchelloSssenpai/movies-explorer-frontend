@@ -3,7 +3,7 @@ import Navigation from '../Navigation/Navigation';
 import headerLogo from '../../images/logo.svg'
 import { useLocation } from 'react-router-dom';
 
-function Header() {
+function Header( { loggedIn } ) {
   const location = useLocation();
   const [hamburgerActive, setHamburgerActive] = useState(false);
   const handleHamburgerClick = () => {
@@ -22,11 +22,11 @@ function Header() {
   }
 
     return (
-    <header className={`header`}>
+     (location.pathname === "/movies" || location.pathname === "/saved-movies" || location.pathname === "/" || location.pathname === "/profile") ?  (<header className={`header`}>
       <a href='/' className='anchor-hover'><img src={headerLogo} alt="Лого" className="header__logo"/></a>
-      <Navigation isActive={hamburgerActive}></Navigation>
+      <Navigation isActive={hamburgerActive} loggedIn={loggedIn} ></Navigation>
       {handleBurger()}
-    </header>
+    </header>) : null 
     );
     }
   

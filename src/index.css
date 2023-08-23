@@ -134,6 +134,8 @@
 @import url(./components/Form/__wrap/form__wrap.css);
 @import url(./components/Form/__input/-error/form__input-error.css);
 @import url(./components/Form/__button/-edited/form__button-edited.css);
+@import url(./components/Form/__button/-disabled/form__button-disabled.css);
+@import url(./components/Form/__submitError/form__submitError.css);
 /* NotFound */
 @import url(./components/NotFound/NotFound.css);
 @import url(./components/NotFound/__header/notFound__header.css);

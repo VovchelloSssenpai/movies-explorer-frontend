@@ -2,20 +2,32 @@ import { useState } from 'react';
 import Form from '../Form/Form';
 import headerLogo from '../../images/logo.svg'
 
-function Register() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+function Register( { onRegister, authorizationError} ) {
     const [nameError, setNameError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [isValid, setIsValid] = useState(true);
+
+    const [registerFormValue, setRegisterFormValue] = useState({
+      name: '',
+      password: '',
+      email: ''
+          })
+
 
     const handleInvalid = (event) => {
         const input = event.target;
-        const errorMessage = input.validationMessage;
-      
+        let errorMessage = input.validationMessage;
+        setIsValid(input.closest('form').checkValidity());
+
         switch (input.name) {
-          case 'username':
+          case 'name':
+            const nameValue = input.value.trim();
+            const validCharacters = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;
+            
+            if (!validCharacters.test(nameValue)) {
+                errorMessage = "Wrong format.";
+            }
             setNameError(errorMessage);
             break;
           case 'email':
@@ -27,11 +39,17 @@ function Register() {
           default:
             break;
         }
+
       };
 
 const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`hehe`);
+        onRegister(registerFormValue);
+}
+
+const handleChange = (e) => {  
+  const {name, value} = e.target;
+  setRegisterFormValue({...registerFormValue, [name]: value})
 }
 
     return (
@@ -39,18 +57,22 @@ const handleSubmit = (e) => {
       <div className='register__wrap'>
         <a href='/'><img src={headerLogo} alt='лого'></img></a>
       <h2 className="register__header">Добро пожаловать!</h2>
-        <Form handleInvalid={handleInvalid} handleSubmit={handleSubmit} button={'Зарегистрироваться'} >
+        <Form handleInvalid={handleInvalid} 
+              handleSubmit={handleSubmit} 
+              button={'Зарегистрироваться'}
+              isValid={isValid}
+              authorizationError={authorizationError} >
           <div className="form__wrap">
                 <label className="form__field">Имя
                 <input className={`form__input ${nameError ? 'form__input-error' : ''}`} 
                         required
                         placeholder='Введите текст' 
-                        name='username'
+                        name='name'
                         minLength={2} 
                         maxLength={30} 
                         onInput={handleInvalid}
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}></input>
+                        value={registerFormValue.name || ''}
+                        onChange={handleChange}></input>
                 <span className="form__input-error">{nameError}</span>
                 </label>
             </div>
@@ -61,8 +83,8 @@ const handleSubmit = (e) => {
                         required
                         placeholder='Введите имейл'
                         name='email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={registerFormValue.email || ''}
+                        onChange={handleChange}
                         onInput={handleInvalid}
                         ></input>
                 <span className="form__input-error">{emailError}</span>
@@ -75,8 +97,8 @@ const handleSubmit = (e) => {
                         placeholder='Введите пароль'
                         required
                         name='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={registerFormValue.password || ''}
+                        onChange={handleChange}
                         onInput={handleInvalid}
                         ></input>
                 <span className="form__input-error">{passwordError}</span>

@@ -1,7 +1,9 @@
+import { useLocation } from 'react-router-dom';
 function Footer() {
+  const location = useLocation();
     const currentYear = new Date().getFullYear();
     return (
-      <footer className="footer">
+     (location.pathname === "/movies" || location.pathname === "/saved-movies" || location.pathname === "/") ? (<footer className="footer">
         <div className="footer__marginwrapper">
         <p className="footer__text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
          <div className="footer__wrapper">
@@ -14,7 +16,7 @@ function Footer() {
             </nav>
          </div>
         </div>
-      </footer>
+      </footer>) : null
     );
   }
   

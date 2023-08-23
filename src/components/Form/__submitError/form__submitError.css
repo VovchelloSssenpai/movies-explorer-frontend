@@ -1,0 +1,14 @@
+.form__submitError{
+    color: rgba(238, 52, 101, 1);
+    text-align: center;
+    font-weight: 300;
+    font-size: 11px;
+    margin: 65px 0 10px 0;
+}
+
+@media screen and (max-width: 560px) {
+    .form__submitError{
+        margin: 156px 0 10px 0;
+    }
+    
+}
