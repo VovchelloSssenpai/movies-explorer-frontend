@@ -47,7 +47,6 @@ function handleShortFilmFiltr(filteredMovies){
 function handleSearchSubmit() {
   handleMoviesDataRequest();
   const filterMovies = handleFilter(allMovies);
-  console.log(filterMovies);
   handleShortFilmFiltr(filterMovies);
   localStorage.setItem('shortFilmStatus', isShortFilm)
 }
