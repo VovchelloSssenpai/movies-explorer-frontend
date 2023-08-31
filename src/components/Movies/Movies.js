@@ -13,113 +13,59 @@ function Movies({
   allMovies,
   handleMoviesDataRequest,
 }) {
+
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isShortFilm, setIsShortFilm] = useState(true);
-  // useEffect(()=>{
-  //   setIsShortFilm(JSON.parse(localStorage.getItem("shortFilmStatus" || [])))
-  // }, [])
-
-  function handleInitialFiltr() {
+  const [shortMovies, setShortMovies] = useState(JSON.parse(localStorage.getItem('shortMovies')) || []);
+  const [searchTerm, setSearchTerm] = useState(localStorage.getItem("searchTerm") || "");
+  const [isShortFilm, setIsShortFilm] = useState(JSON.parse(localStorage.getItem("shortFilmStatus") || false));
+   
+  function handleInitialFilter() {
     const regex = new RegExp(searchTerm, "i");
-    const filtered = allMovies.filter((movie) => regex.test(movie.nameRU));
-    // Set filteredMovies state
-    setFilteredMovies(filtered);
-    // Save searchTerm and filteredMovies to local storage
-    localStorage.setItem("searchTerm", searchTerm);
-    localStorage.setItem("savedMovies", JSON.stringify(filtered));
+    const filteredMovies = allMovies.filter((movie) => regex.test(movie.nameRU));
+    if(searchTerm.length > 0) {setFilteredMovies(filteredMovies);}
+    return filteredMovies;
   }
 
+useEffect(()=>{
+  handleFilter()
+}, [])
 
-  useEffect(() => {
-    const savedMoviesString = localStorage.getItem("savedMovies");
-    const savedShortMovies = localStorage.getItem("ShortMovies");
-    const shortFilmStatus = JSON.parse(localStorage.getItem("shortFilmStatus"));
-    setIsShortFilm(shortFilmStatus);
-
-    if (savedMoviesString && !shortFilmStatus) {
-      setFilteredMovies(JSON.parse(savedMoviesString));
-    } 
-    if(savedShortMovies && shortFilmStatus) {
-      setFilteredMovies(JSON.parse(savedShortMovies))
+  function handleFilter (){
+    if(!isShortFilm) {
+      handleInitialFilter()
+      localStorage.setItem("shortFilmStatus", JSON.stringify(isShortFilm))
+  } 
+    if(isShortFilm) {
+      handleShortFilm()
+      localStorage.setItem("shortFilmStatus", JSON.stringify(isShortFilm))
     }
-
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-
-  function handleShortFiltr() {
-    console.log(isShortFilm);
-   if(isShortFilm) {
-    const shortFilms = filteredMovies.filter((movie) => movie.duration < 40);
-    setFilteredMovies(shortFilms)
-    localStorage.setItem("ShortMovies", JSON.stringify(shortFilms))
-    localStorage.setItem("shortFilmStatus", JSON.stringify(isShortFilm))
-  }
-  if(!isShortFilm) {setFilteredMovies(JSON.parse(localStorage.getItem("savedMovies")))
-    localStorage.setItem("shortFilmStatus", JSON.stringify(isShortFilm))}
-  }
+  } 
+  
 
   useEffect(()=>{
-    handleShortFiltr();
-
-  }, [isShortFilm])
-  
-  
-  function handleSearchSubmit() {
-    handleMoviesDataRequest();
-    handleInitialFiltr()
-  }
+    handleFilter()
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [isShortFilm])
 
 
-//   function handleFiltr() {
-//     if(isShortFilm) {
-//       
-//       setFilteredMovies(shortFilms);
-//       // localStorage.setItem("savedMovies", JSON.stringify(shortFilms));
-//       // localStorage.setItem("shortFilmStatus", JSON.stringify(isShortFilm)); 
-//     }
-//       else {
-//         setFilteredMovies(allMovies.filter((movie) => {
-//           const regex = new RegExp(searchTerm, "i");
-//           localStorage.setItem("searchTerm", searchTerm);
-//         return  regex.test(movie.nameRU);
-//         }));
-//         localStorage.setItem("savedMovies", JSON.stringify(filteredMovies));
-//         localStorage.setItem("shortFilmStatus", JSON.stringify(isShortFilm));
-//       }
-//   }
+function handleShortFilm(){
+ const filteredMovies = handleInitialFilter();
+  const shortFilms = filteredMovies.filter((movie) => movie.duration < 40);
+  setFilteredMovies(shortFilms)
+}
 
-//   useEffect(()=>{
-//     handleFiltr()
-//   }, [isShortFilm, allMovies])
-  
-//   useEffect(() => {
-//     const savedIsShortFilm = JSON.parse(localStorage.getItem("shortFilmStatus"));
-//     if (savedIsShortFilm !== null) {
-//       setIsShortFilm(savedIsShortFilm);
-//     }
-//   }, []);
 
-//   useEffect(() => {
-//     localStorage.setItem("shortFilmStatus", JSON.stringify(isShortFilm));
-//   }, [isShortFilm]);
+  function handleSearchSubmit  () {
+    handleFilter();
+  };
 
-  // useEffect(() => {
-  //   const savedMoviesString = localStorage.getItem("savedMovies" || []);
-  //   const savedIsShortFilmString = localStorage.getItem(
-  //     "shortFilmStatus" || []
-  //   );
 
-  //   if (savedMoviesString) {
-  //     setFilteredMovies(JSON.parse(savedMoviesString));
-  //   }
-
-  //   if (savedIsShortFilmString) {
-  //     setIsShortFilm(JSON.parse(savedIsShortFilmString));
-  //   }
-  // }, []);
+  // Функция посковика 
+  function search (e){
+    const value = e.target.value;
+    setSearchTerm(value);
+    localStorage.setItem("searchTerm", value)
+  };
 
   return (
     <main className="movies">
@@ -129,6 +75,7 @@ function Movies({
         handleSearchSubmit={handleSearchSubmit}
         setIsShortFilm={setIsShortFilm}
         isShortFilm={isShortFilm}
+        search={search}
       ></SearchForm>
 
       {isLoading ? (
@@ -140,7 +87,7 @@ function Movies({
         </p>
       ) : filteredMovies.length > 0 ? (
         <MoviesCardList>
-          {filteredMovies.map((data, i) => {
+          { filteredMovies.map((data, i) => {
             return (
               <MovieCard
                 movieData={data}
@@ -160,52 +107,3 @@ function Movies({
 }
 
 export default Movies;
-
-
-
-
-
-
-  // // Функция поиска фильмов по фильтру regex
-  // function handleFilter(movies) {
-  //   return movies.filter((movie) => {
-  //     const regex = new RegExp(searchTerm, "i");
-  //     localStorage.setItem("searchTerm", searchTerm);
-
-  //     return regex.test(movie.nameRU);
-  //   });
-  // }
-
-  // // Функция фильтрации короткометражек
-  // function handleShortFilmFiltr(filteredMovies) {
-  //   if (isShortFilm) {
-  //     const shortFilms = filteredMovies.filter((movie) => movie.duration < 40);
-  //     setFilteredMovies(shortFilms);
-  //     localStorage.setItem("savedMovies", JSON.stringify(shortFilms));
-  //   } else {
-  //     setFilteredMovies(filteredMovies);
-  //     localStorage.setItem("savedMovies", JSON.stringify(filteredMovies));
-  //   }
-  // }
-
-  // function handleSearchSubmit() {
-  //   handleMoviesDataRequest();
-  //   const filterMovies = handleFilter(allMovies);
-  //   handleShortFilmFiltr(filterMovies);
-  //   localStorage.setItem("shortFilmStatus", isShortFilm);
-  // }
-
-  // useEffect(() => {
-  //   const savedMoviesString = localStorage.getItem("savedMovies" || []);
-  //   const savedIsShortFilmString = localStorage.getItem(
-  //     "shortFilmStatus" || []
-  //   );
-
-  //   if (savedMoviesString) {
-  //     setFilteredMovies(JSON.parse(savedMoviesString));
-  //   }
-
-  //   if (savedIsShortFilmString) {
-  //     setIsShortFilm(JSON.parse(savedIsShortFilmString));
-  //   }
-  // }, [setIsShortFilm, setFilteredMovies]);

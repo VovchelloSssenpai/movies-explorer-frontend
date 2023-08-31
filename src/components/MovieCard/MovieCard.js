@@ -8,6 +8,7 @@ function MovieCard({
   handleDislike,
   likedMovies,
 }) {
+
   const location = useLocation();
   const [isLikedMovie, setIsLikedMovie] = useState(false);
 
@@ -22,16 +23,6 @@ function MovieCard({
     if (location.pathname === "/movies") handleIsLikedButton();
   }, [likedMovies, location.pathname, movieData.id]);
 
-  function handleDuration() {
-    if (movieData.duration > 60) {
-      return `${Math.floor(movieData.duration / 60)}ч ${
-        movieData.duration - 60 * Math.floor(movieData.duration / 60)
-      } минуты`;
-    } else {
-      return `${movieData.duration} минут`;
-    }
-  }
-
   const sanitizedNameRU = movieData.nameRU.replace(/[^А-Яа-яёЁ\s]/g, " ");
   const sanitizedNameEN = movieData.nameEN.replace(/[^A-Za-z\s]/g, " ");
 
@@ -44,14 +35,24 @@ function MovieCard({
       nameRU: sanitizedNameRU,
       nameEN: sanitizedNameEN,
     });
-    setIsLikedMovie(true);
+    // setIsLikedMovie(true);
   };
+
+// не касается лайка
+function handleDuration() {
+  if (movieData.duration > 60) {
+    return `${Math.floor(movieData.duration / 60)}ч ${
+      movieData.duration - 60 * Math.floor(movieData.duration / 60)
+    } минуты`;
+  } else {
+    return `${movieData.duration} минут`;
+  }
+}
 
   const handleDislikeClick = () => {
     likedMovies.some((movie) =>
       movie.movieId === movieData.id ? handleDislike(movie._id) : ""
     );
-    setIsLikedMovie(false);
   };
 
   const handleDeleteCard = () => {
@@ -98,3 +99,58 @@ function MovieCard({
 }
 
 export default MovieCard;
+
+
+
+
+
+
+// useEffect(() => {
+//   function handleIsLikedButton() {
+//     if (likedMovies.some((movie) => movie.movieId === movieData.id)) {
+//       setIsLikedMovie(true);
+//     } else {
+//       setIsLikedMovie(false);
+//     }
+//   }
+//   if (location.pathname === "/movies") handleIsLikedButton();
+// }, [likedMovies, location.pathname, movieData.id]);
+
+
+
+// const sanitizedNameRU = movieData.nameRU.replace(/[^А-Яа-яёЁ\s]/g, " ");
+// const sanitizedNameEN = movieData.nameEN.replace(/[^A-Za-z\s]/g, " ");
+
+// const handleLikeClick = () => {
+//   const { image, ...otherData } = movieData;
+//   handleLike({
+//     ...otherData,
+//     thumbnail: `https://api.nomoreparties.co${image.formats.thumbnail.url}`,
+//     image: `https://api.nomoreparties.co/${movieData.image.url}`,
+//     nameRU: sanitizedNameRU,
+//     nameEN: sanitizedNameEN,
+//   });
+//   setIsLikedMovie(true);
+// };
+
+// // не касается лайка
+// function handleDuration() {
+// if (movieData.duration > 60) {
+//   return `${Math.floor(movieData.duration / 60)}ч ${
+//     movieData.duration - 60 * Math.floor(movieData.duration / 60)
+//   } минуты`;
+// } else {
+//   return `${movieData.duration} минут`;
+// }
+// }
+
+// const handleDislikeClick = () => {
+//   likedMovies.some((movie) =>
+//     movie.movieId === movieData.id ? handleDislike(movie._id) : ""
+//   );
+//   setIsLikedMovie(false);
+// };
+
+// const handleDeleteCard = () => {
+//   handleDislike(movieData._id);
+// };

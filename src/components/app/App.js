@@ -20,7 +20,6 @@ import { registrationEmailError, registrationError } from "../../utils/constandD
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [allMovies, setAllMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isResponseOk, setIsResponseOk] = useState(true);
@@ -42,6 +41,7 @@ function App() {
   const [userID, setUserID] = useState("");
   const [profileRequestStatus, setProfileRequestStatus] = useState('');
   const [isFormDisabled, setIsFormDisabled] = useState(false);
+  const [allMovies, setAllMovies] = useState(JSON.parse(localStorage.getItem('initialMovies')) || []);
 
   // TOKEN CHECK
   const handleTokenCheck = () => {
@@ -94,7 +94,10 @@ function App() {
     gettingMoviesApi
       .getMovies()
       .then((res) => {
-        setAllMovies(res);
+        if(allMovies.length === 0) {
+          localStorage.setItem('initialMovies', JSON.stringify(res));
+          setAllMovies(res);
+        }
         setIsResponseOk(true);
         setIsLoading(false);
       })
@@ -105,6 +108,7 @@ function App() {
 
   useEffect(() => {
     handleMoviesDataRequest();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // REGISTRATION
@@ -179,7 +183,9 @@ function App() {
   function handleLike(cardData) {
     profileApi
       .placeLike(cardData)
-      .then((res) => {})
+      .then((res) => {
+        gettingLikedMovies();
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -214,9 +220,9 @@ function App() {
                 handleLike={handleLike}
                 handleDislike={handleDislike}
                 likedMovies={likedMovies}
-                allMovies={allMovies}
                 setIsLoading={setIsLoading}
                 handleMoviesDataRequest={handleMoviesDataRequest}
+                allMovies={allMovies}
               ></ProtectedRouteElement>
             }
           ></Route>

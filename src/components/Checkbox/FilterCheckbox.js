@@ -1,18 +1,22 @@
 import { useEffect } from "react";
-
+import { useLocation } from "react-router-dom";
 function FilterCheckbox({ setIsShortFilm, isShortFilm }) {
+ const location = useLocation();
+
   const handleCheckboxChange = () => {
     setIsShortFilm(!isShortFilm);
   };
 
   useEffect(() => {
+    if(location.pathname === "/movies")
+    {
     const savedShortFIlmStatus = localStorage.getItem("shortFilmStatus");
-    console.log(savedShortFIlmStatus);
     if (savedShortFIlmStatus) {
       const isShortFilm = savedShortFIlmStatus === "true";
-      console.log(isShortFilm);
       setIsShortFilm(isShortFilm);
     }
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -4,3 +4,8 @@ export const registrationEmailError = "Пользователь с таким em
 export const registrationError = "При регистрации пользователя произошла ошибка.";
 export const practiCum = "https://practicum.yandex.ru/";
 export const gitCum = "https://github.com/VovchelloSssenpai?tab=repositories";
+export const HIGH_WIDTH_MOVIE_AMOUNT = 12;
+export const MEDIUM_WIDTH_MOVIE_AMOUNT = 8;
+export const SMALL_WIDTH_MOVIE_AMOUNT = 5;
+export const HIGHER_WIDTH_MOVIE_ADD = 3;
+export const SMALLER_WIDTH_MOVIE_ADD = 2;

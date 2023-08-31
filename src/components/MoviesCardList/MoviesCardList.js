@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { HIGH_WIDTH_MOVIE_AMOUNT, MEDIUM_WIDTH_MOVIE_AMOUNT, SMALL_WIDTH_MOVIE_AMOUNT, HIGHER_WIDTH_MOVIE_ADD, SMALLER_WIDTH_MOVIE_ADD } from "../../utils/constandData";
 
 function MoviesCardList({ children, isOwn }) {
   const [visibleCards, setVisibleCards] = useState(getInitialVisibleCards());
@@ -6,20 +7,20 @@ function MoviesCardList({ children, isOwn }) {
   function getInitialVisibleCards() {
     const screenWidth = window.innerWidth;
     if (screenWidth <= 480) {
-      return 5;
+      return SMALL_WIDTH_MOVIE_AMOUNT;
     } else if (screenWidth <= 768) {
-      return 8;
+      return MEDIUM_WIDTH_MOVIE_AMOUNT;
     } else {
-      return 12;
+      return HIGH_WIDTH_MOVIE_AMOUNT;
     }
   }
 
   const handleShowMore = () => {
     const screenWidth = window.innerWidth;
     if (screenWidth > 768) {
-      setVisibleCards(visibleCards + 3);
+      setVisibleCards(visibleCards + HIGHER_WIDTH_MOVIE_ADD);
     } else {
-      setVisibleCards(visibleCards + 2);
+      setVisibleCards(visibleCards + SMALLER_WIDTH_MOVIE_ADD);
     }
   };
 

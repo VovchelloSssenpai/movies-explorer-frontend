@@ -1,7 +1,6 @@
 import magnifyingGlass from "../../images/magnifying.svg";
 import FilterCheckbox from "../Checkbox/FilterCheckbox";
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 function SearchForm({
   setSearchTerm,
@@ -9,8 +8,8 @@ function SearchForm({
   searchTerm,
   setIsShortFilm,
   isShortFilm,
+  search
 }) {
-  const location = useLocation();
   const [movieError, setMovieError] = useState("");
 
   const handleInvalid = (event) => {
@@ -26,14 +25,16 @@ function SearchForm({
       : handleSearchSubmit();
   };
 
-  useEffect(() => {
-    if (location.pathname === "/movies") {
-      const savedSearchTerm = localStorage.getItem("searchTerm");
-      if (savedSearchTerm) {
-        setSearchTerm(savedSearchTerm);
-      }
-    }
-  }, [setSearchTerm, location]);
+  // useEffect(() => {
+  //   if (location.pathname === "/movies") {
+  //     const savedSearchTerm = localStorage.getItem("searchTerm");
+  //     if (savedSearchTerm) {
+  //       setSearchTerm(savedSearchTerm);
+  //     }
+  //   }
+  // }, [setSearchTerm, location]);
+
+
 
   return (
     <form name="search" className="SearchForm" action="submit" noValidate>
@@ -50,7 +51,7 @@ function SearchForm({
           name="movie"
           value={searchTerm}
           onInput={handleInvalid}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={search}
         ></input>
         <button
           className="movies__searchButton button-hover"

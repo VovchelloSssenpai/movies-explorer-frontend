@@ -8,32 +8,36 @@ function SavedMovies({ likedMovies, handleDislike, gettingLikedMovies }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [likedFilteredMovies, setLikedFilteredMovies] = useState([]);
 
-  // Функция поиска фильмов по фильтру regex
+  useEffect(()=>{
+    handleFilter()
+  }, [likedMovies, isShortFilm])
 
-  function handleFilter(movies) {
-    return movies.filter((movie) => {
-      const regex = new RegExp(searchTerm, "i");
-      return regex.test(movie.nameRU);
-    });
+  // // Функция поиска фильмов по фильтру regex
+  function handleWordFilter(){
+    const regex = new RegExp(searchTerm, "i");
+    const filteredMovies = likedMovies.filter((movie) => regex.test(movie.nameRU));
+    setLikedFilteredMovies(filteredMovies);
   }
 
-  function handleShortFilmFiltr(filteredMovies) {
-    if (isShortFilm) {
-      const shortFilms = filteredMovies.filter((movie) => movie.duration < 40);
-      setLikedFilteredMovies(shortFilms);
-    } else {
-      setLikedFilteredMovies(filteredMovies);
-    }
+  function handleFilter() {
+    console.log(isShortFilm);
+    if(!isShortFilm){
+      handleWordFilter()
+  } if(isShortFilm) {
+      const shortFilms = likedFilteredMovies.filter((movie) => movie.duration < 40);
+       setLikedFilteredMovies(shortFilms);
+  }
   }
 
   function handleSearchSubmit() {
-    const filterMovies = handleFilter(likedMovies);
-    handleShortFilmFiltr(filterMovies);
+    handleFilter();
   }
 
-  useEffect(() => {
-    setLikedFilteredMovies(likedMovies);
-  }, [likedMovies]);
+  function search (e){
+    const value = e.target.value;
+    setSearchTerm(value);
+  };
+
 
   return (
     <main className="savedMovies">
@@ -43,6 +47,7 @@ function SavedMovies({ likedMovies, handleDislike, gettingLikedMovies }) {
         setSearchTerm={setSearchTerm}
         handleSearchSubmit={handleSearchSubmit}
         searchTerm={searchTerm}
+        search={search}
       ></SearchForm>
       <MoviesCardList>
         {likedFilteredMovies.length > 0 ? (
