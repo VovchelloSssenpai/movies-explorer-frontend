@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { practiCum, gitCum } from "../../utils/constandData";
+import { PRACTICUM_LINK, GITHUB_LINK } from "../../utils/constandData";
 
 function Footer() {
   const location = useLocation();
@@ -18,7 +18,7 @@ function Footer() {
             <ul className="footer__list">
               <li>
                 <a
-                  href={practiCum}
+                  href={PRACTICUM_LINK}
                   target="_blank"
                   rel="noreferrer"
                   className="footer__link anchor-hover"
@@ -28,7 +28,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href={gitCum}
+                  href={GITHUB_LINK}
                   target="_blank"
                   rel="noreferrer"
                   className="footer__link anchor-hover"

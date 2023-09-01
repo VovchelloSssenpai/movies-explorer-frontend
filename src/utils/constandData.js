@@ -1,9 +1,9 @@
-export const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-export const validCharacters = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;
-export const registrationEmailError = "Пользователь с таким email уже существует.";
-export const registrationError = "При регистрации пользователя произошла ошибка.";
-export const practiCum = "https://practicum.yandex.ru/";
-export const gitCum = "https://github.com/VovchelloSssenpai?tab=repositories";
+export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+export const VALID_CHARACTERS = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;
+export const REGISTRATION_EMAIL_ERROR = "Пользователь с таким email уже существует.";
+export const REGISTRATION_ERROR = "При регистрации пользователя произошла ошибка.";
+export const PRACTICUM_LINK = "https://practicum.yandex.ru/";
+export const GITHUB_LINK = "https://github.com/VovchelloSssenpai?tab=repositories";
 export const HIGH_WIDTH_MOVIE_AMOUNT = 12;
 export const MEDIUM_WIDTH_MOVIE_AMOUNT = 8;
 export const SMALL_WIDTH_MOVIE_AMOUNT = 5;

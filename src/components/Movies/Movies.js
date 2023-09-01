@@ -13,9 +13,8 @@ function Movies({
   allMovies,
   handleMoviesDataRequest,
 }) {
-
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [shortMovies, setShortMovies] = useState(JSON.parse(localStorage.getItem('shortMovies')) || []);
+  // const [shortMovies, setShortMovies] = useState(JSON.parse(localStorage.getItem('shortMovies')) || []);
   const [searchTerm, setSearchTerm] = useState(localStorage.getItem("searchTerm") || "");
   const [isShortFilm, setIsShortFilm] = useState(JSON.parse(localStorage.getItem("shortFilmStatus") || false));
    
@@ -28,6 +27,7 @@ function Movies({
 
 useEffect(()=>{
   handleFilter()
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
 
   function handleFilter (){

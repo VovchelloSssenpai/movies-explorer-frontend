@@ -10,6 +10,7 @@ function SavedMovies({ likedMovies, handleDislike, gettingLikedMovies }) {
 
   useEffect(()=>{
     handleFilter()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [likedMovies, isShortFilm])
 
   // // Функция поиска фильмов по фильтру regex
@@ -20,7 +21,6 @@ function SavedMovies({ likedMovies, handleDislike, gettingLikedMovies }) {
   }
 
   function handleFilter() {
-    console.log(isShortFilm);
     if(!isShortFilm){
       handleWordFilter()
   } if(isShortFilm) {

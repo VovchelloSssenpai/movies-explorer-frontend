@@ -23,17 +23,12 @@ function MovieCard({
     if (location.pathname === "/movies") handleIsLikedButton();
   }, [likedMovies, location.pathname, movieData.id]);
 
-  const sanitizedNameRU = movieData.nameRU.replace(/[^А-Яа-яёЁ\s]/g, " ");
-  const sanitizedNameEN = movieData.nameEN.replace(/[^A-Za-z\s]/g, " ");
-
   const handleLikeClick = () => {
     const { image, ...otherData } = movieData;
     handleLike({
       ...otherData,
       thumbnail: `https://api.nomoreparties.co${image.formats.thumbnail.url}`,
       image: `https://api.nomoreparties.co/${movieData.image.url}`,
-      nameRU: sanitizedNameRU,
-      nameEN: sanitizedNameEN,
     });
     // setIsLikedMovie(true);
   };

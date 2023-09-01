@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Form from "../Form/Form";
 import headerLogo from "../../images/logo.svg";
-import { emailRegex, validCharacters } from "../../utils/constandData"
+import { EMAIL_REGEX, VALID_CHARACTERS } from "../../utils/constandData"
 
 function Register({
   onRegister,
@@ -26,14 +26,14 @@ function Register({
       case "name":
         const nameValue = input.value.trim();
 
-        if (!validCharacters.test(nameValue)) {
+        if (!VALID_CHARACTERS.test(nameValue)) {
           errorMessage = "Wrong format.";
         }
         setNameError(errorMessage);
         break;
       case "email":
         setEmailError(errorMessage);
-        setIsEmailValid(input.value.match(emailRegex));
+        setIsEmailValid(input.value.match(EMAIL_REGEX));
         break;
       case "password":
         setPasswordError(errorMessage);

@@ -14,7 +14,7 @@ import { profileApi } from "../../utils/MainApi";
 import { useState, useEffect } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
-import { registrationEmailError, registrationError } from "../../utils/constandData";
+import { REGISTRATION_EMAIL_ERROR, REGISTRATION_ERROR } from "../../utils/constandData";
 
 
 function App() {
@@ -125,10 +125,10 @@ function App() {
       .catch((err) => {
         setIsFormDisabled(false);
         if (err.includes("409")) {
-          setAuthorizationError(registrationEmailError);
+          setAuthorizationError(REGISTRATION_EMAIL_ERROR);
         } else {
           setAuthorizationError(
-            registrationError
+            REGISTRATION_ERROR
           );
         }
       });
@@ -184,7 +184,7 @@ function App() {
     profileApi
       .placeLike(cardData)
       .then((res) => {
-        gettingLikedMovies();
+        setLikedMovies((prevLikedMovies) => [...prevLikedMovies, res]);
       })
       .catch((err) => {
         console.log(err);

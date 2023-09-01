@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Form from "../Form/Form";
 import headerLogo from "../../images/logo.svg";
-import { emailRegex } from "../../utils/constandData";
+import { EMAIL_REGEX } from "../../utils/constandData";
 function Login({
   authorizationFormValue,
   setAuthorizationFormValue,
@@ -24,7 +24,7 @@ function Login({
     switch (input.name) {
       case "email":
         setEmailError(errorMessage);
-        setIsEmailValid(input.value.match(emailRegex));
+        setIsEmailValid(input.value.match(EMAIL_REGEX));
         break;
       case "password":
         setPasswordError(errorMessage);

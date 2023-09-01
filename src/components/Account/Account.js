@@ -1,6 +1,6 @@
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import { useContext, useState } from "react";
-import { validCharacters, emailRegex } from "../../utils/constandData";
+import { VALID_CHARACTERS, EMAIL_REGEX } from "../../utils/constandData";
 
 function Account({
   handleLogOut,
@@ -32,14 +32,14 @@ function Account({
       case "username":
         const nameValue = input.value.trim();
 
-        if (!validCharacters.test(nameValue)) {
+        if (!VALID_CHARACTERS.test(nameValue)) {
           errorMessage = "Wrong format.";
         }
         setNameError(errorMessage);
         break;
       case "email":
         setEmailError(errorMessage);
-        const isEmailValid = emailRegex.test(input.value);
+        const isEmailValid = EMAIL_REGEX.test(input.value);
         setIsEmailValid(isEmailValid);
         break;
       default:
