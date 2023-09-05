@@ -1,6 +1,7 @@
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import { useContext, useState } from "react";
-import { VALID_CHARACTERS, EMAIL_REGEX } from "../../utils/constandData";
+import { useFormWithValidation } from "../../utils/useValidate";
+
 
 function Account({
   handleLogOut,
@@ -10,63 +11,30 @@ function Account({
   isFormDisabled,
   setIsFormDisabled
 }) {
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
   const currentUser = useContext(CurrentUserContext);
-  const [nameError, setNameError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [isValid, setIsValid] = useState(false);
-  const [isEmailValid, setIsEmailValid] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditingButtonStatus = () => {
-    setIsEditing(true);
-    setNewName(currentUser.name);
-    setNewEmail(currentUser.email);
+    setIsEditing(!isEditing);
+    values.name = currentUser.name;
+    values.email = currentUser.email;
   };
-
-  const handleInvalid = (event) => {
-    const input = event.target;
-    let errorMessage = input.validationMessage;
-    setIsValid(input.closest("form").checkValidity());
-
-    switch (input.name) {
-      case "username":
-        const nameValue = input.value.trim();
-
-        if (!VALID_CHARACTERS.test(nameValue)) {
-          errorMessage = "Wrong format.";
-        }
-        setNameError(errorMessage);
-        break;
-      case "email":
-        setEmailError(errorMessage);
-        const isEmailValid = EMAIL_REGEX.test(input.value);
-        setIsEmailValid(isEmailValid);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const [newName, setNewName] = useState("");
-  const [newEmail, setNewEmail] = useState("");
 
   const handleButtonCheck = () => {
-    if(currentUser.email === newEmail || currentUser.name === newName) {return false}
-    else { return true}
+    if(currentUser.email === values.email  &&  currentUser.name === values.username ) {console.log(currentUser.name === values.name); console.log(values.name); return false}
+    else {console.log(true); return true}
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (currentUser.email === newEmail) {
-      setProfileRequestStatus("Пользователь с таким email уже существует");
-    } else {
+      console.log(values.name);
       const updatedUserInfo = {
-        name: newName || currentUser.name,
-        email: newEmail || currentUser.email,
+        name: values.username || currentUser.name,
+        email: values.email || currentUser.email,
       };
       handleUserUpdate(updatedUserInfo);
       setIsFormDisabled(true);
-    }
   };
 
   return (
@@ -88,20 +56,19 @@ function Account({
               name="username"
               minLength={2}
               maxLength={30}
-              required
               className={`accountForm__input ${
-                nameError ? "accountForm__input-error" : ""
+                errors['username'] ? "accountForm__input-error" : ""
               }`}
-              value={newName}
-              onChange={(e) => setNewName(e.target.value)}
-              onInput={handleInvalid}
+              defaultValue={values.name}
+              onChange={handleChange}
               disabled={isFormDisabled}
+              required
             />
           ) : (
             <p className="accountForm__text">{currentUser.name}</p>
           )}
         </div>
-        <span className="accountForm__input-error">{nameError}</span>
+        <span className="accountForm__input-error">{errors['username']}</span>
         <div className="accountForm__wrapper">
           <label htmlFor="email" className="accountForm__label">
             E-mail
@@ -110,20 +77,20 @@ function Account({
             <input
               name="email"
               className={`accountForm__input ${
-                emailError ? "accountForm__input-error" : ""
+                errors['email'] ? "accountForm__input-error" : ""
               }`}
               type="email"
-              value={newEmail}
-              onChange={(e) => setNewEmail(e.target.value)}
-              onInput={handleInvalid}
-              required
+              pattern="[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}"
+              defaultValue={values.email}
+              onChange={handleChange}
               disabled={isFormDisabled}
+              required
             ></input>
           ) : (
             <p className="accountForm__text">{currentUser.email}</p>
           )}
         </div>
-        <span className="accountForm__input-error">{emailError}</span>
+        <span className="accountForm__input-error">{errors['email']}</span>
         {!isEditing ? (
           <div className="accountForm__buttonWrapper">
             <button
@@ -146,10 +113,10 @@ function Account({
             <p className={`${profileRequestStatus.includes('обновлены') ? 'accountForm__requestStatus-positive': 'accountForm__requestStatus'}`}>{profileRequestStatus}</p>
             <button
               className={`form__button button-hover ${
-                !isValid || !isEmailValid || !handleButtonCheck() ? "form__button-disabled" : ""
+                !isValid || !handleButtonCheck() ? "form__button-disabled" : ""
               }`}
               type="submit"
-              disabled={isFormDisabled}
+               disabled={!isValid  || isFormDisabled || !handleButtonCheck()}              
             >
               Сохранить
             </button>

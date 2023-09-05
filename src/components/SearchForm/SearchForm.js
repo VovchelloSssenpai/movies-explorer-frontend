@@ -1,5 +1,4 @@
 import magnifyingGlass from "../../images/magnifying.svg";
-import FilterCheckbox from "../Checkbox/FilterCheckbox";
 import { useState } from "react";
 
 function SearchForm({
@@ -61,10 +60,6 @@ function SearchForm({
         </button>
       </div>
       <span className="SearchForm-error">{movieError}</span>
-      <FilterCheckbox
-        setIsShortFilm={setIsShortFilm}
-        isShortFilm={isShortFilm}
-      ></FilterCheckbox>
     </form>
   );
 }

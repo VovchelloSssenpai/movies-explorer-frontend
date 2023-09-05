@@ -2,6 +2,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import MovieCard from "../MovieCard/MovieCard";
 import { useEffect, useState } from "react";
+import FilterCheckbox from "../Checkbox/FilterCheckbox";
 
 function SavedMovies({ likedMovies, handleDislike, gettingLikedMovies }) {
   const [isShortFilm, setIsShortFilm] = useState(false);
@@ -13,18 +14,17 @@ function SavedMovies({ likedMovies, handleDislike, gettingLikedMovies }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [likedMovies, isShortFilm])
 
-  // // Функция поиска фильмов по фильтру regex
-  function handleWordFilter(){
+  
+  function handleFilter() {
     const regex = new RegExp(searchTerm, "i");
     const filteredMovies = likedMovies.filter((movie) => regex.test(movie.nameRU));
-    setLikedFilteredMovies(filteredMovies);
-  }
 
-  function handleFilter() {
     if(!isShortFilm){
-      handleWordFilter()
-  } if(isShortFilm) {
-      const shortFilms = likedFilteredMovies.filter((movie) => movie.duration < 40);
+      setLikedFilteredMovies(filteredMovies);
+  } 
+  
+    if(isShortFilm) {
+      const shortFilms = filteredMovies.filter((movie) => movie.duration < 40);
        setLikedFilteredMovies(shortFilms);
   }
   }
@@ -49,6 +49,10 @@ function SavedMovies({ likedMovies, handleDislike, gettingLikedMovies }) {
         searchTerm={searchTerm}
         search={search}
       ></SearchForm>
+        <FilterCheckbox
+        setIsShortFilm={setIsShortFilm}
+        isShortFilm={isShortFilm}
+      ></FilterCheckbox>
       <MoviesCardList>
         {likedFilteredMovies.length > 0 ? (
           likedFilteredMovies.map((data, i) => {

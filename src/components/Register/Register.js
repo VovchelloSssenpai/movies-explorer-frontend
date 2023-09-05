@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "../Form/Form";
 import headerLogo from "../../images/logo.svg";
 import { EMAIL_REGEX, VALID_CHARACTERS } from "../../utils/constandData"
@@ -16,6 +16,12 @@ function Register({
   const [passwordError, setPasswordError] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
+
+  useEffect(() => {
+    return () => {
+      setPasswordError("");
+    };
+  }, []);
 
   const handleInvalid = (event) => {
     const input = event.target;
@@ -53,6 +59,8 @@ function Register({
     const { name, value } = e.target;
     setRegisterFormValue({ ...registerFormValue, [name]: value });
   };
+
+
 
   return (
     <main className="register">

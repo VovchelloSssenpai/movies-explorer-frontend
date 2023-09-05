@@ -56,7 +56,7 @@ function App() {
         if (path !== "signin") {
           navigate(path, { replace: true });
         }
-      });
+      })
     }
   };
 
@@ -70,9 +70,11 @@ function App() {
     profileApi.updateUserInfo(userInfo).then((res) => {
       setProfileRequestStatus('Данные обновлены');
       const { name, email } = res;
+      console.log(res);
+      console.log({ name, email });
       setProfileData({ name, email });
       setIsFormDisabled(false);
-    }).catch((err) => {setProfileRequestStatus("При регистрации пользователя произошла ошибка."); setIsFormDisabled(false);});
+    }).catch((err) => {if(err.status === 409){setProfileRequestStatus("Пользователь с таким email уже существуют.")} else{setProfileRequestStatus("При регистрации пользователя произошла ошибка.")} setIsFormDisabled(false);});
   }
 
   function handleLogOut() {

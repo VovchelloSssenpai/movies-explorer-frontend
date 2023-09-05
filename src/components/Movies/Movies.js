@@ -3,6 +3,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import MovieCard from "../MovieCard/MovieCard";
 import Preloader from "../Preloader/Preloader";
 import { useEffect, useState } from "react";
+import FilterCheckbox from "../Checkbox/FilterCheckbox";
 
 function Movies({
   isLoading,
@@ -40,13 +41,11 @@ useEffect(()=>{
       localStorage.setItem("shortFilmStatus", JSON.stringify(isShortFilm))
     }
   } 
-  
 
   useEffect(()=>{
     handleFilter()
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [isShortFilm])
-
 
 function handleShortFilm(){
  const filteredMovies = handleInitialFilter();
@@ -77,7 +76,10 @@ function handleShortFilm(){
         isShortFilm={isShortFilm}
         search={search}
       ></SearchForm>
-
+      <FilterCheckbox
+        setIsShortFilm={setIsShortFilm}
+        isShortFilm={isShortFilm}
+      ></FilterCheckbox>
       {isLoading ? (
         <Preloader />
       ) : !isResponseOk ? (
