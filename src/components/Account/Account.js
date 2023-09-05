@@ -23,12 +23,11 @@ function Account({
 
   const handleButtonCheck = () => {
     if(currentUser.email === values.email  &&  currentUser.name === values.username ) {console.log(currentUser.name === values.name); console.log(values.name); return false}
-    else {console.log(true); return true}
+    else { return true}
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-      console.log(values.name);
       const updatedUserInfo = {
         name: values.username || currentUser.name,
         email: values.email || currentUser.email,

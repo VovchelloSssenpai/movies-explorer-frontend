@@ -74,7 +74,7 @@ function App() {
       console.log({ name, email });
       setProfileData({ name, email });
       setIsFormDisabled(false);
-    }).catch((err) => {if(err.status === 409){setProfileRequestStatus("Пользователь с таким email уже существуют.")} else{setProfileRequestStatus("При регистрации пользователя произошла ошибка.")} setIsFormDisabled(false);});
+    }).catch((err) => {console.log(err);  if(err.includes("409")){setProfileRequestStatus("Пользователь с таким email уже существуют.")} else{setProfileRequestStatus("При регистрации пользователя произошла ошибка.")} setIsFormDisabled(false);});
   }
 
   function handleLogOut() {
