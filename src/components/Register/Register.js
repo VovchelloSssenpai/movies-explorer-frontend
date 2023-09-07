@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Form from "../Form/Form";
 import headerLogo from "../../images/logo.svg";
-import { EMAIL_REGEX, VALID_CHARACTERS } from "../../utils/constandData"
+import { useFormWithValidation } from "../../utils/useValidate";
 
 function Register({
   onRegister,
@@ -11,55 +11,22 @@ function Register({
   isFormDisabled,
   setIsFormDisabled
 }) {
-  const [nameError, setNameError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [isValid, setIsValid] = useState(false);
-  const [isEmailValid, setIsEmailValid] = useState(true);
+
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
 
   useEffect(() => {
-    return () => {
-      setPasswordError("");
-    };
-  }, []);
-
-  const handleInvalid = (event) => {
-    const input = event.target;
-    let errorMessage = input.validationMessage;
-    setIsValid(input.closest("form").checkValidity());
-
-    switch (input.name) {
-      case "name":
-        const nameValue = input.value.trim();
-
-        if (!VALID_CHARACTERS.test(nameValue)) {
-          errorMessage = "Wrong format.";
-        }
-        setNameError(errorMessage);
-        break;
-      case "email":
-        setEmailError(errorMessage);
-        setIsEmailValid(input.value.match(EMAIL_REGEX));
-        break;
-      case "password":
-        setPasswordError(errorMessage);
-        break;
-      default:
-        break;
-    }
-  };
+    setRegisterFormValue({
+      name: values.name,
+      email: values.email,
+      password: values.password
+    });
+  }, [values, setRegisterFormValue]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onRegister(registerFormValue);
     setIsFormDisabled(true);
   };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setRegisterFormValue({ ...registerFormValue, [name]: value });
-  };
-
 
 
   return (
@@ -70,10 +37,9 @@ function Register({
         </a>
         <h2 className="register__header">Добро пожаловать!</h2>
         <Form
-          handleInvalid={handleInvalid}
           handleSubmit={handleSubmit}
           button={"Зарегистрироваться"}
-          isValid={isValid && isEmailValid}
+          isValid={isValid}
           authorizationError={authorizationError}
           isFormDisabled={isFormDisabled}
         >
@@ -82,19 +48,19 @@ function Register({
               Имя
               <input
                 className={`form__input ${
-                  nameError ? "form__input-error" : ""
+                  errors.name ? "form__input-error" : ""
                 }`}
                 required
                 placeholder="Введите текст"
                 name="name"
                 minLength={2}
                 maxLength={30}
-                onInput={handleInvalid}
-                value={registerFormValue.name || ""}
+                pattern="^(?!\s)[A-Za-zА-Яа-я\-\s]+$"
                 onChange={handleChange}
                 disabled={isFormDisabled}
+                value={values.name || ""}
               ></input>
-              <span className="form__input-error">{nameError}</span>
+              <span className="form__input-error">{errors.name}</span>
             </label>
           </div>
           <div className="form__wrap">
@@ -102,18 +68,18 @@ function Register({
               E-mail
               <input
                 className={`form__input ${
-                  emailError ? "form__input-error" : ""
+                  errors.email ? "form__input-error" : ""
                 }`}
                 type="email"
                 required
                 placeholder="Введите имейл"
                 name="email"
-                value={registerFormValue.email || ""}
                 onChange={handleChange}
-                onInput={handleInvalid}
                 disabled={isFormDisabled}
+                pattern="[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}"
+                value={values.email || ""}
               ></input>
-              <span className="form__input-error">{emailError}</span>
+              <span className="form__input-error">{errors.email}</span>
             </label>
           </div>
           <div className="form__wrap">
@@ -121,18 +87,18 @@ function Register({
               Пароль
               <input
                 className={`form__input ${
-                  passwordError ? "form__input-error" : ""
+                  errors.password ? "form__input-error" : ""
                 }`}
                 type="password"
                 placeholder="Введите пароль"
                 required
+                minLength={2}
                 name="password"
-                value={registerFormValue.password || ""}
+                value={values.password || ""}
                 onChange={handleChange}
-                onInput={handleInvalid}
                 disabled={isFormDisabled}
               ></input>
-              <span className="form__input-error">{passwordError}</span>
+              <span className="form__input-error">{errors.password}</span>
             </label>
           </div>
         </Form>

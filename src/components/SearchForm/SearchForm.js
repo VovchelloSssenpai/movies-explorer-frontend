@@ -24,16 +24,6 @@ function SearchForm({
       : handleSearchSubmit();
   };
 
-  // useEffect(() => {
-  //   if (location.pathname === "/movies") {
-  //     const savedSearchTerm = localStorage.getItem("searchTerm");
-  //     if (savedSearchTerm) {
-  //       setSearchTerm(savedSearchTerm);
-  //     }
-  //   }
-  // }, [setSearchTerm, location]);
-
-
 
   return (
     <form name="search" className="SearchForm" action="submit" noValidate>

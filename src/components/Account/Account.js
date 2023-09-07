@@ -17,13 +17,14 @@ function Account({
 
   const handleEditingButtonStatus = () => {
     setIsEditing(!isEditing);
-    values.name = currentUser.name;
+    values.username = currentUser.name;
+    console.log(values.username);
     values.email = currentUser.email;
   };
 
   const handleButtonCheck = () => {
-    if(currentUser.email === values.email  &&  currentUser.name === values.username ) {console.log(currentUser.name === values.name); console.log(values.name); return false}
-    else { return true}
+    if(currentUser.email === values.email  &&  currentUser.name === values.username ) {return false}
+    else {return true}
   }
 
   const handleSubmit = (e) => {
@@ -55,10 +56,11 @@ function Account({
               name="username"
               minLength={2}
               maxLength={30}
+              pattern="^(?!\s)[A-Za-zА-Яа-я\-\s]+$"
               className={`accountForm__input ${
                 errors['username'] ? "accountForm__input-error" : ""
               }`}
-              defaultValue={values.name}
+              defaultValue={values.username}
               onChange={handleChange}
               disabled={isFormDisabled}
               required
