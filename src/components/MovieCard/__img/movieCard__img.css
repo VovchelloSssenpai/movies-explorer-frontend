@@ -1,17 +1,20 @@
 .movieCard__img{
     max-width: 360px;
+    width: 360px;
     max-height: 200px;
-    object-fit: cover;
+    height: 200px;
 }
 
 @media screen and (max-width: 841px) {
     .movieCard__img {
     max-width: 342px;
+    width: 342px;
     }
 } 
 
 @media screen and (max-width: 560px) {
     .movieCard__img {
     max-width: 300px;
+    width: 300px;
     }
 } 

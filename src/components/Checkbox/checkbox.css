@@ -5,11 +5,13 @@
     height: 20px; */
     text-align: center;
     margin-top: 29px;
+    margin-bottom: 102px;
 }
 
 
 @media screen and (max-width: 560px) {
     .checkbox{
         margin-top: 42px;
+        margin-bottom: 61px;
     }
 }

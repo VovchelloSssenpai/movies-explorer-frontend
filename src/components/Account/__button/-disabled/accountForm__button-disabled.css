@@ -1,0 +1,4 @@
+.accountForm__button-disabled{
+    pointer-events: none;
+    user-select: none;
+}

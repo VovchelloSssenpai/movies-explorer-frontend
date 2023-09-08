@@ -1,24 +1,96 @@
-import example from '../../images/example.png'
-import deleteIcon from '../../images/Xicon.svg'
+import deleteIcon from "../../images/Xicon.svg";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-function MovieCard({isActive, isOwn}) {
-    return (
-             <li className="movieCard">
-                    <div className="movieCard__info">
-                      <h2 className="movieCard__name">В погоне за Бенкси</h2>
-                      <p className="movieCard__duration">27 минут</p>
-                    </div>
-                    <img alt="В погоне за Бенкси" src={example} className='movieCard__img'></img>
-                    {isOwn ? (
-        <button className="movieCard__button"><img src={deleteIcon} alt='кнопка удаления'></img></button>
-      ) : isActive ? (
-        <button className="movieCard__button movieCard__button-active">&#10003;</button>
-      ) : (
-        <button className="movieCard__button">Сохранить</button>
-      )} 
-                    
-             </li>
-    );
+function MovieCard({
+  movieData,
+  handleLike,
+  handleDislike,
+  likedMovies,
+}) {
+
+  const location = useLocation();
+  const [isLikedMovie, setIsLikedMovie] = useState(false);
+
+  useEffect(() => {
+    function handleIsLikedButton() {
+      if (likedMovies.some((movie) => movie.movieId === movieData.id)) {
+        setIsLikedMovie(true);
+      } else {
+        setIsLikedMovie(false);
+      }
+    }
+    if (location.pathname === "/movies") handleIsLikedButton();
+  }, [likedMovies, location.pathname, movieData.id]);
+
+  const handleLikeClick = () => {
+    const { image, ...otherData } = movieData;
+    handleLike({
+      ...otherData,
+      thumbnail: `https://api.nomoreparties.co${image.formats.thumbnail.url}`,
+      image: `https://api.nomoreparties.co/${movieData.image.url}`,
+    });
+    // setIsLikedMovie(true);
+  };
+
+// не касается лайка
+function handleDuration() {
+  if (movieData.duration > 60) {
+    return `${Math.floor(movieData.duration / 60)}ч ${
+      movieData.duration - 60 * Math.floor(movieData.duration / 60)
+    } минуты`;
+  } else {
+    return `${movieData.duration} минут`;
   }
-  
-  export default MovieCard;
+}
+
+  const handleDislikeClick = () => {
+    likedMovies.some((movie) =>
+      movie.movieId === movieData.id ? handleDislike(movie._id) : ""
+    );
+  };
+
+  const handleDeleteCard = () => {
+    handleDislike(movieData._id);
+  };
+
+  return (
+    <li className="movieCard">
+      <div className="movieCard__info">
+        <h2 className="movieCard__name">{movieData.nameRU}</h2>
+        <p className="movieCard__duration">{handleDuration()}</p>
+      </div>
+      <a href={movieData.trailerLink}>
+        <img
+          alt={movieData.nameRU}
+          src={
+            location.pathname === "/movies"
+              ? `https://api.nomoreparties.co/${movieData.image.url}`
+              : `${movieData.image}`
+          }
+          className="movieCard__img"
+        ></img>
+      </a>
+      {location.pathname === "/movies" && !isLikedMovie && (
+        <button className="movieCard__button" onClick={handleLikeClick}>
+          Сохранить
+        </button>
+      )}
+      {location.pathname === "/movies" && isLikedMovie && (
+        <button
+          className="movieCard__button movieCard__button-active"
+          onClick={handleDislikeClick}
+        >
+          &#10003;
+        </button>
+      )}
+      {location.pathname === "/saved-movies" && (
+        <button className="movieCard__button" onClick={handleDeleteCard}>
+          <img src={deleteIcon} alt="кнопка удаления"></img>
+        </button>
+      )}
+    </li>
+  );
+}
+
+export default MovieCard;

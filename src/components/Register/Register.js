@@ -1,91 +1,110 @@
-import { useState } from 'react';
-import Form from '../Form/Form';
-import headerLogo from '../../images/logo.svg'
+import { useEffect } from "react";
+import Form from "../Form/Form";
+import headerLogo from "../../images/logo.svg";
+import { useFormWithValidation } from "../../utils/useValidate";
 
-function Register() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [nameError, setNameError] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
+function Register({
+  onRegister,
+  authorizationError,
+  setRegisterFormValue,
+  registerFormValue,
+  isFormDisabled,
+  setIsFormDisabled
+}) {
 
-    const handleInvalid = (event) => {
-        const input = event.target;
-        const errorMessage = input.validationMessage;
-      
-        switch (input.name) {
-          case 'username':
-            setNameError(errorMessage);
-            break;
-          case 'email':
-            setEmailError(errorMessage);
-            break;
-          case 'password':
-            setPasswordError(errorMessage);
-            break;
-          default:
-            break;
-        }
-      };
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
 
-const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(`hehe`);
-}
+  useEffect(() => {
+    setRegisterFormValue({
+      name: values.name,
+      email: values.email,
+      password: values.password
+    });
+  }, [values, setRegisterFormValue]);
 
-    return (
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onRegister(registerFormValue);
+    setIsFormDisabled(true);
+  };
+
+
+  return (
     <main className="register">
-      <div className='register__wrap'>
-        <a href='/'><img src={headerLogo} alt='лого'></img></a>
-      <h2 className="register__header">Добро пожаловать!</h2>
-        <Form handleInvalid={handleInvalid} handleSubmit={handleSubmit} button={'Зарегистрироваться'} >
+      <div className="register__wrap">
+        <a href="/">
+          <img src={headerLogo} alt="лого"></img>
+        </a>
+        <h2 className="register__header">Добро пожаловать!</h2>
+        <Form
+          handleSubmit={handleSubmit}
+          button={"Зарегистрироваться"}
+          isValid={isValid}
+          authorizationError={authorizationError}
+          isFormDisabled={isFormDisabled}
+        >
           <div className="form__wrap">
-                <label className="form__field">Имя
-                <input className={`form__input ${nameError ? 'form__input-error' : ''}`} 
-                        required
-                        placeholder='Введите текст' 
-                        name='username'
-                        minLength={2} 
-                        maxLength={30} 
-                        onInput={handleInvalid}
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}></input>
-                <span className="form__input-error">{nameError}</span>
-                </label>
-            </div>
-            <div className="form__wrap">
-                <label className="form__field">E-mail
-                <input className={`form__input ${emailError ? 'form__input-error' : ''}`}
-                        type="email" 
-                        required
-                        placeholder='Введите имейл'
-                        name='email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        onInput={handleInvalid}
-                        ></input>
-                <span className="form__input-error">{emailError}</span>
-                </label>
-            </div>
-            <div className="form__wrap">
-                <label className="form__field">Пароль
-                <input className={`form__input ${passwordError ? 'form__input-error' : ''}`} 
-                        type="password" 
-                        placeholder='Введите пароль'
-                        required
-                        name='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        onInput={handleInvalid}
-                        ></input>
-                <span className="form__input-error">{passwordError}</span>
-                </label>
-            </div>
+            <label className="form__field">
+              Имя
+              <input
+                className={`form__input ${
+                  errors.name ? "form__input-error" : ""
+                }`}
+                required
+                placeholder="Введите текст"
+                name="name"
+                minLength={2}
+                maxLength={30}
+                pattern="^(?!\s)[A-Za-zА-Яа-я\-\s]+$"
+                onChange={handleChange}
+                disabled={isFormDisabled}
+                value={values.name || ""}
+              ></input>
+              <span className="form__input-error">{errors.name}</span>
+            </label>
+          </div>
+          <div className="form__wrap">
+            <label className="form__field">
+              E-mail
+              <input
+                className={`form__input ${
+                  errors.email ? "form__input-error" : ""
+                }`}
+                type="email"
+                required
+                placeholder="Введите имейл"
+                name="email"
+                onChange={handleChange}
+                disabled={isFormDisabled}
+                pattern="[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}"
+                value={values.email || ""}
+              ></input>
+              <span className="form__input-error">{errors.email}</span>
+            </label>
+          </div>
+          <div className="form__wrap">
+            <label className="form__field">
+              Пароль
+              <input
+                className={`form__input ${
+                  errors.password ? "form__input-error" : ""
+                }`}
+                type="password"
+                placeholder="Введите пароль"
+                required
+                minLength={2}
+                name="password"
+                value={values.password || ""}
+                onChange={handleChange}
+                disabled={isFormDisabled}
+              ></input>
+              <span className="form__input-error">{errors.password}</span>
+            </label>
+          </div>
         </Form>
       </div>
     </main>
-    );
-  }
-  
-  export default Register;
+  );
+}
+
+export default Register;

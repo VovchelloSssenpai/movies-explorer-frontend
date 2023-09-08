@@ -1,5 +1,5 @@
-.SearchForm-error{
-    display: block;
+.accountForm__requestStatus{
     text-align: center;
     color: rgba(238, 52, 101, 1);
+    font-size: 11px;
 }
